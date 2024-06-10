@@ -49,13 +49,16 @@ export default SearchInput;
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: 46,
-    marginTop: 50,
-    marginBottom: 20,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
+    width: '100%',
+    height: 56,
+    marginTop: 40,
+    marginBottom: 20,
     alignItems: 'center',
+    borderRadius: 6,
+    paddingLeft: 16,
+    gap: 7,
     backgroundColor: '#F0F2F5',
   },
   textInput: {
@@ -63,5 +66,6 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: 'transparent',
     padding: 10,
+    fontSize: 14,
   },
 });

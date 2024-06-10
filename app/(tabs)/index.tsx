@@ -2,8 +2,11 @@ import Header from '@/components/Header';
 import SearchInput from '@/components/SearchInput';
 import { useState } from 'react';
 import Toast from 'react-native-root-toast';
-import { StatusBar, StyleSheet, Text, View } from 'react-native';
+import { FlatList, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Colors } from '@/constants/Colors';
+import Movie from '@/components/Movie';
+
+const movies = [1, 2, 4, 5, 6, 6];
 
 export default function HomeScreen() {
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -27,7 +30,39 @@ export default function HomeScreen() {
 
       <SearchInput searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleSearch={handleSearch} />
 
-      <Text style={styles.title}>Search Results</Text>
+      <Text style={styles.title}>Search results</Text>
+
+      <ScrollView style={styles.scrollview} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 100, }} alwaysBounceVertical>
+
+        <FlatList
+          alwaysBounceVertical
+          showsVerticalScrollIndicator={false}
+          data={movies}
+          numColumns={2}
+          keyExtractor={(item, index) => item.toString()}
+          initialNumToRender={8}
+          renderItem={({ item, index }) => (
+            <Movie />
+          )}
+        />
+
+        {/* {(movies && movies.length > 0) ? (
+        <FlatList
+          alwaysBounceVertical
+          showsVerticalScrollIndicator={false}
+          data={movies}
+          keyExtractor={(item, index) => item.name + index}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity>
+              
+            </TouchableOpacity>
+          )}
+        />
+      ) : (
+        <Text style={styles.searchNull}>No movie found</Text>
+      )} */}
+
+      </ScrollView>
 
       <StatusBar barStyle={'dark-content'} translucent />
     </View>
@@ -39,9 +74,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     flexDirection: 'column',
-    paddingTop: 60,
+    paddingTop: 50,
     position: "relative",
     paddingHorizontal: 20,
+  },
+  scrollview: {
+    flex: 1,
+    flexDirection: 'column',
+    marginTop: 27,
   },
   title: {
     fontFamily: 'medium',
@@ -49,5 +89,13 @@ const styles = StyleSheet.create({
     color: Colors.tint,
     letterSpacing: -0.02,
     textAlign: 'left',
+    marginTop: 14,
+    marginBottom: 7,
+  },
+  searchNull: {
+    fontSize: 16,
+    fontFamily: 'medium',
+    color: Colors.tint,
+    textAlign: 'center',
   },
 });
