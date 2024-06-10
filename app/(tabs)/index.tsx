@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FlatList, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, StatusBar, StyleSheet, Text, View } from 'react-native';
 import Toast from 'react-native-root-toast';
 import { useQuery } from '@tanstack/react-query';
 import { fetchMovies } from '@/utils/api';
@@ -20,13 +20,13 @@ type MovieItem = {
 export default function HomeScreen() {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
+  // Function to handle search functionality using react query
   const { data: movies, isError, isLoading, refetch } = useQuery<MovieItem[], Error>({
     queryKey: ['movies', searchQuery],
     queryFn: () => fetchMovies(searchQuery),
     enabled: !!searchQuery,
   });
 
-  // Function to handle search functionality
   useEffect(() => {
     if (searchQuery) {
       refetch();
@@ -50,7 +50,7 @@ export default function HomeScreen() {
       <Text style={styles.title}>Search results</Text>
 
       {isLoading ? (
-        <Text style={styles.loading}>Loading...</Text>
+        <ActivityIndicator size={'large'} color={Colors.tint} />
       ) : isError ? (
         <Text style={styles.error}>Error fetching movies. Please try again.</Text>
       ) : movies && movies.length > 0 ? (
