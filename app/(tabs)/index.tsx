@@ -32,21 +32,19 @@ export default function HomeScreen() {
 
       <Text style={styles.title}>Search results</Text>
 
-      <ScrollView style={styles.scrollview} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 100, }} alwaysBounceVertical>
+      <FlatList
+        alwaysBounceVertical
+        showsVerticalScrollIndicator={false}
+        data={movies}
+        numColumns={2}
+        keyExtractor={(item, index) => item.toString()}
+        initialNumToRender={6}
+        renderItem={({ item, index }) => (
+          <Movie />
+        )}
+      />
 
-        <FlatList
-          alwaysBounceVertical
-          showsVerticalScrollIndicator={false}
-          data={movies}
-          numColumns={2}
-          keyExtractor={(item, index) => item.toString()}
-          initialNumToRender={6}
-          renderItem={({ item, index }) => (
-            <Movie />
-          )}
-        />
-
-        {/* {(movies && movies.length > 0) ? (
+      {/* {(movies && movies.length > 0) ? (
         <FlatList
           alwaysBounceVertical
           showsVerticalScrollIndicator={false}
@@ -62,8 +60,6 @@ export default function HomeScreen() {
         <Text style={styles.searchNull}>No movie found</Text>
       )} */}
 
-      </ScrollView>
-
       <StatusBar barStyle={'dark-content'} translucent />
     </View>
   );
@@ -76,12 +72,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingTop: 50,
     position: "relative",
+    paddingHorizontal: 10,
   },
   scrollview: {
     flex: 1,
     flexDirection: 'column',
     marginTop: 16,
-    paddingHorizontal: 10,
   },
   title: {
     fontFamily: 'medium',
@@ -90,7 +86,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.02,
     textAlign: 'left',
     marginTop: 14,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
   },
   searchNull: {
     fontSize: 16,

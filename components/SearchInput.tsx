@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    width: '100%',
     height: 56,
     marginTop: 40,
     marginBottom: 20,
@@ -60,7 +59,7 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     gap: 7,
     backgroundColor: '#F0F2F5',
-    marginHorizontal: 20,
+    marginHorizontal: 10,
   },
   textInput: {
     width: '80%',
