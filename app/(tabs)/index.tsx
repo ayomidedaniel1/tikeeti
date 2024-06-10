@@ -1,10 +1,10 @@
 import Header from '@/components/Header';
-import SearchInput from '@/components/SearchInput';
-import { useState } from 'react';
-import Toast from 'react-native-root-toast';
-import { FlatList, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Colors } from '@/constants/Colors';
 import Movie from '@/components/Movie';
+import SearchInput from '@/components/SearchInput';
+import { Colors } from '@/constants/Colors';
+import { useState } from 'react';
+import { FlatList, StatusBar, StyleSheet, Text, View } from 'react-native';
+import Toast from 'react-native-root-toast';
 
 const movies = [1, 2, 4, 5, 6, 6];
 
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.02,
     textAlign: 'left',
     marginTop: 14,
+    marginBottom: 21,
     paddingHorizontal: 10,
   },
   searchNull: {
