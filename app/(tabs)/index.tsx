@@ -40,7 +40,7 @@ export default function HomeScreen() {
           data={movies}
           numColumns={2}
           keyExtractor={(item, index) => item.toString()}
-          initialNumToRender={8}
+          initialNumToRender={6}
           renderItem={({ item, index }) => (
             <Movie />
           )}
@@ -76,12 +76,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingTop: 50,
     position: "relative",
-    paddingHorizontal: 20,
   },
   scrollview: {
     flex: 1,
     flexDirection: 'column',
-    marginTop: 27,
+    marginTop: 16,
+    paddingHorizontal: 10,
   },
   title: {
     fontFamily: 'medium',
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.02,
     textAlign: 'left',
     marginTop: 14,
-    marginBottom: 7,
+    paddingHorizontal: 20,
   },
   searchNull: {
     fontSize: 16,

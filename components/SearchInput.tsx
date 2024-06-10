@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     gap: 7,
     backgroundColor: '#F0F2F5',
+    marginHorizontal: 20,
   },
   textInput: {
     width: '80%',

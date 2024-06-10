@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     marginVertical: 12,
+    marginHorizontal: 10,
     // width: 170,
     // height: 289,
   },
