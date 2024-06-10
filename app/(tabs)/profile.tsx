@@ -1,9 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar, StyleSheet, Text, View } from 'react-native';
 
 export default function ProfileScreen() {
   return (
     <View style={styles.container}>
       <Text>Profile  Screen</Text>
+
+      <StatusBar barStyle={'dark-content'} translucent />
     </View>
   );
 }

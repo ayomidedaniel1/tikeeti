@@ -2,23 +2,40 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 
 import { Colors } from '@/constants/Colors';
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
+import { TabBarFontIcon, TabBarIcon, TabBarMaterialIcon } from '@/components/navigation/TabBarIcon';
+import { StyleSheet, Text } from 'react-native';
 
 export default function TabLayout() {
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors.tint,
+        tabBarActiveTintColor: Colors.tabIconSelected,
+        tabBarInactiveTintColor: Colors.tabIconDefault,
         headerShown: false,
+        tabBarStyle: {
+          backgroundColor: Colors.tint,
+        },
       }}>
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <TabBarIcon
+              name={focused ? 'home' : 'home-outline'}
+              color={color}
+            />
           ),
+          tabBarLabel: ({ color, focused }) => (
+            <Text style={[{
+              color: focused ? Colors.tabText : Colors.tabIconDefault
+            },
+            styles.tabBarLabelStyle]}
+            >
+              Home
+            </Text>
+          )
         }}
       />
       <Tabs.Screen
@@ -26,8 +43,20 @@ export default function TabLayout() {
         options={{
           title: 'Search',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'search' : 'search-outline'} color={color} />
+            <TabBarIcon
+              name={focused ? 'search' : 'search-outline'}
+              color={color}
+            />
           ),
+          tabBarLabel: ({ color, focused }) => (
+            <Text style={[{
+              color: focused ? Colors.tabText : Colors.tabIconDefault
+            },
+            styles.tabBarLabelStyle]}
+            >
+              Search
+            </Text>
+          )
         }}
       />
       <Tabs.Screen
@@ -35,8 +64,20 @@ export default function TabLayout() {
         options={{
           title: 'Bookings',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <TabBarMaterialIcon
+              name={focused ? 'ticket-confirmation' : 'ticket-confirmation-outline'}
+              color={color}
+            />
           ),
+          tabBarLabel: ({ color, focused }) => (
+            <Text style={[{
+              color: focused ? Colors.tabText : Colors.tabIconDefault
+            },
+            styles.tabBarLabelStyle]}
+            >
+              Bookings
+            </Text>
+          )
         }}
       />
       <Tabs.Screen
@@ -44,8 +85,20 @@ export default function TabLayout() {
         options={{
           title: 'Favourites',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'heart' : 'heart-outline'} color={color} />
+            <TabBarIcon
+              name={focused ? 'heart' : 'heart-outline'}
+              color={color}
+            />
           ),
+          tabBarLabel: ({ color, focused }) => (
+            <Text style={[{
+              color: focused ? Colors.tabText : Colors.tabIconDefault
+            },
+            styles.tabBarLabelStyle]}
+            >
+              Favourites
+            </Text>
+          )
         }}
       />
       <Tabs.Screen
@@ -53,10 +106,30 @@ export default function TabLayout() {
         options={{
           title: 'Profile',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <TabBarFontIcon
+              name={focused ? 'user' : 'user-o'}
+              color={color}
+            />
+          ),
+          tabBarLabel: ({ color, focused }) => (
+            <Text style={[{
+              color: focused ? Colors.tabText : Colors.tabIconDefault
+            },
+            styles.tabBarLabelStyle]}
+            >
+              Profile
+            </Text>
           ),
         }}
       />
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  tabBarLabelStyle: {
+    fontSize: 12,
+    lineHeight: 16,
+    fontFamily: 'regular',
+  },
+});

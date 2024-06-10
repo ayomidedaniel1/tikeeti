@@ -3,9 +3,9 @@
  */
 
 export const Colors = {
-  text: '#11181C',
+  tabText: '#9DF316',
   background: '#fff',
-  tint: '#133205',
+  tint: '#13191C',
   tabIconDefault: '#98A2B3',
   tabIconSelected: '#133205',
 };
