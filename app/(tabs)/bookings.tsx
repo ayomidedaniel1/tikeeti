@@ -1,12 +1,9 @@
-import { Image, StyleSheet, Platform, View, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
+export default function BookingsScreen() {
   return (
     <View style={styles.container}>
-      <Text>Profile  Screen</Text>
+      <Text>Bookings  Screen</Text>
     </View>
   );
 }
