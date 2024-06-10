@@ -1,7 +1,7 @@
-import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
-import React from 'react';
-import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '@/constants/Colors';
+import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
+import { StyleSheet, TextInput, View } from 'react-native';
 
 type SearchInputProps = {
   searchQuery: string;
@@ -13,19 +13,7 @@ const SearchInput = ({ searchQuery, setSearchQuery, handleSearch }: SearchInputP
 
   const handleChangeText = (text: string) => {
     setSearchQuery(text);
-  };
-
-  const handleSearchPress = () => {
-    Keyboard.dismiss();
     handleSearch();
-  };
-
-  // Function to dismiss the keyboard when users press enter on the keyboard
-  const handleKeyPress = (event: any) => {
-    if (event.nativeEvent.key === 'Enter') {
-      Keyboard.dismiss();
-      handleSearch();
-    }
   };
 
   return (
@@ -36,8 +24,6 @@ const SearchInput = ({ searchQuery, setSearchQuery, handleSearch }: SearchInputP
         style={styles.textInput}
         value={searchQuery}
         onChangeText={handleChangeText}
-        onSubmitEditing={handleSearchPress}
-        onKeyPress={handleKeyPress}
         placeholder='Adventure movies'
         placeholderTextColor={Colors.tint}
       />

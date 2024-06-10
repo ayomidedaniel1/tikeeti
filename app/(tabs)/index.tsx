@@ -1,64 +1,73 @@
+import { useEffect, useState } from 'react';
+import { FlatList, StatusBar, StyleSheet, Text, View } from 'react-native';
+import Toast from 'react-native-root-toast';
+import { useQuery } from '@tanstack/react-query';
+import { fetchMovies } from '@/utils/api';
+
 import Header from '@/components/Header';
 import Movie from '@/components/Movie';
 import SearchInput from '@/components/SearchInput';
 import { Colors } from '@/constants/Colors';
-import { useState } from 'react';
-import { FlatList, StatusBar, StyleSheet, Text, View } from 'react-native';
-import Toast from 'react-native-root-toast';
 
-const movies = [1, 2, 4, 5, 6, 6];
+type MovieItem = {
+  title: string;
+  image: string;
+  rating: number;
+  category: string;
+  duration: number;
+};
 
 export default function HomeScreen() {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  // Function to handle search functionality
-  const handleSearch = async () => {
-    if (searchQuery) {
-      try {
-        console.log(searchQuery);
+  const { data: movies, isError, isLoading, refetch } = useQuery<MovieItem[], Error>({
+    queryKey: ['movies', searchQuery],
+    queryFn: () => fetchMovies(searchQuery),
+    enabled: !!searchQuery,
+  });
 
-      } catch (error) {
-        console.log(`Some error occured ${error}`);
-        Toast.show('Some error occurred!. Try again');
-      }
+  // Function to handle search functionality
+  useEffect(() => {
+    if (searchQuery) {
+      refetch();
     }
-  };
+  }, [searchQuery]);
+
+  useEffect(() => {
+    if (isError) {
+      Toast.show('Some error occurred! Try again', {
+        duration: Toast.durations.LONG,
+      });
+    }
+  }, [isError]);
 
   return (
     <View style={styles.container}>
       <Header />
 
-      <SearchInput searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleSearch={handleSearch} />
+      <SearchInput searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleSearch={refetch} />
 
       <Text style={styles.title}>Search results</Text>
 
-      <FlatList
-        alwaysBounceVertical
-        showsVerticalScrollIndicator={false}
-        data={movies}
-        numColumns={2}
-        keyExtractor={(item, index) => item.toString()}
-        initialNumToRender={6}
-        renderItem={({ item, index }) => (
-          <Movie />
-        )}
-      />
-
-      {/* {(movies && movies.length > 0) ? (
+      {isLoading ? (
+        <Text style={styles.loading}>Loading...</Text>
+      ) : isError ? (
+        <Text style={styles.error}>Error fetching movies. Please try again.</Text>
+      ) : movies && movies.length > 0 ? (
         <FlatList
           alwaysBounceVertical
           showsVerticalScrollIndicator={false}
           data={movies}
-          keyExtractor={(item, index) => item.name + index}
-          renderItem={({ item, index }) => (
-            <TouchableOpacity>
-              
-            </TouchableOpacity>
+          numColumns={2}
+          keyExtractor={(item, index) => item.title + index}
+          initialNumToRender={6}
+          renderItem={({ item }) => (
+            <Movie title={item.title} image={item.image} rating={item.rating} category={item.category} duration={item.duration} />
           )}
         />
       ) : (
         <Text style={styles.searchNull}>No movie found</Text>
-      )} */}
+      )}
 
       <StatusBar barStyle={'dark-content'} translucent />
     </View>
@@ -94,5 +103,14 @@ const styles = StyleSheet.create({
     fontFamily: 'medium',
     color: Colors.tint,
     textAlign: 'center',
+  },
+  loading: {
+    textAlign: 'center',
+    marginTop: 20,
+  },
+  error: {
+    color: 'red',
+    textAlign: 'center',
+    marginTop: 20,
   },
 });

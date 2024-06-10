@@ -2,15 +2,25 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '@/constants/Colors';
+import { formatDuration } from '@/utils/time';
 
-const Movie = () => {
+interface MovieProps {
+  title: string;
+  image: string;
+  rating: number;
+  category: string;
+  duration: number;
+}
+
+const Movie = ({ title, image, rating, category, duration }: MovieProps) => {
+
   return (
     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-evenly', }}>
       <TouchableOpacity activeOpacity={0.9} style={styles.container}>
         <View style={styles.imgContainer}>
           <View style={styles.ratingContainer}>
             <Ionicons name="star" size={13} color={Colors.tabText} />
-            <Text style={styles.rating}>4.5</Text>
+            <Text style={styles.rating}>{rating}</Text>
           </View>
 
           <View style={styles.iconContainer}>
@@ -18,16 +28,16 @@ const Movie = () => {
           </View>
 
           <Image
-            src='https://randomwordgenerator.com/img/picture-generator/54e4dc474f50ac14f1dc8460962e33791c3ad6e04e507749742c78d69e4dc5_640.jpg'
+            src={image}
             style={styles.img}
           />
         </View>
 
-        <Text style={styles.title}>Star Wars: A New Hope (1977)</Text>
+        <Text style={styles.title}>{title}</Text>
 
         <View style={styles.infoContainer}>
           <Ionicons name="time" size={11} color={Colors.tabIconDefault} />
-          <Text style={styles.info}>2hr 55mins  |  Action/Adventure</Text>
+          <Text style={styles.info}>{formatDuration(duration)}  |  {category}</Text>
         </View>
       </TouchableOpacity>
     </View>
