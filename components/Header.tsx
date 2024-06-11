@@ -1,25 +1,13 @@
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { Ionicons, SimpleLineIcons } from '@expo/vector-icons';
 import { Colors } from '@/constants/Colors';
 import { useLocation } from '@/hooks/useLocation';
+import { Ionicons, SimpleLineIcons } from '@expo/vector-icons';
+import React from 'react';
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const Header = () => {
   const { location, handleOpenSettings, permissionDenied, address } = useLocation();
-  const [latitude, setLatitude] = useState<number | null>(null);
-  const [longitude, setLongitude] = useState<number | null>(null);
 
-  // useEffect to check if app has user location access
-  useEffect(() => {
-    if (location) {
-      setLatitude(location.coords.latitude);
-      setLongitude(location.coords.longitude);
-    }
-
-    console.log(latitude, longitude);
-    console.log(location);
-  }, [location]);
-
+  // checkING if app has user location access
   if (permissionDenied) {
     Alert.alert(
       'Permission denied',
@@ -33,10 +21,6 @@ const Header = () => {
         { text: 'OK', onPress: () => console.log('OK Pressed') },
       ]
     );
-  }
-
-  if (address) {
-    console.log(`User is in ${address.state}, ${address.country}`);
   }
 
   return (
