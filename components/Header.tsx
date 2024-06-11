@@ -5,7 +5,7 @@ import React from 'react';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const Header = () => {
-  const { location, handleOpenSettings, permissionDenied, address } = useLocation();
+  const { handleOpenSettings, permissionDenied, address } = useLocation();
 
   // checkING if app has user location access
   if (permissionDenied) {
