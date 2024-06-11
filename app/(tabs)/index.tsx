@@ -9,7 +9,7 @@ import Movie from '@/components/Movie';
 import SearchInput from '@/components/SearchInput';
 import { Colors } from '@/constants/Colors';
 
-type MovieItem = {
+interface MovieItem {
   title: string;
   image: string;
   rating: number;

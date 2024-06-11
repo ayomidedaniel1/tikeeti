@@ -3,7 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 
-type SearchInputProps = {
+interface SearchInputProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   handleSearch: () => void;

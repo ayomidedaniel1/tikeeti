@@ -1,9 +1,44 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React from 'react';
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { Ionicons, SimpleLineIcons } from '@expo/vector-icons';
 import { Colors } from '@/constants/Colors';
+import { useLocation } from '@/hooks/useLocation';
 
 const Header = () => {
+  const { location, handleOpenSettings, permissionDenied, address } = useLocation();
+  const [latitude, setLatitude] = useState<number | null>(null);
+  const [longitude, setLongitude] = useState<number | null>(null);
+
+  // useEffect to check if app has user location access
+  useEffect(() => {
+    if (location) {
+      setLatitude(location.coords.latitude);
+      setLongitude(location.coords.longitude);
+    }
+
+    console.log(latitude, longitude);
+    console.log(location);
+  }, [location]);
+
+  if (permissionDenied) {
+    Alert.alert(
+      'Permission denied',
+      'You denied Tiketti permission',
+      [
+        {
+          text: 'Go to settings',
+          onPress: () => handleOpenSettings(),
+          style: 'cancel',
+        },
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
+      ]
+    );
+  }
+
+  if (address) {
+    console.log(`User is in ${address.state}, ${address.country}`);
+  }
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.backBtn}>
@@ -13,9 +48,15 @@ const Header = () => {
       <View style={styles.locationContainer}>
         <SimpleLineIcons name="location-pin" size={15} color="black" />
 
-        <Text style={styles.locationText}>
-          Glassgow, scotland
-        </Text>
+        {address ? (
+          <Text style={styles.locationText}>
+            {address.state}, {address.country}
+          </Text>
+        ) : (
+          <Text style={styles.locationText}>
+            Glassgow, scotland
+          </Text>
+        )}
       </View>
     </View>
   );
