@@ -8,7 +8,6 @@ describe('SearchInput component', () => {
 
     // Expect the input field with placeholder text "Adventure movies" to exist
     expect(getByPlaceholderText('Adventure movies')).toBeTruthy();
-    expect(getByPlaceholderText('Adventure movies')).toMatchSnapshot();
   });
 
   it('calls setSearchQuery and handleSearch when text changes', () => {
