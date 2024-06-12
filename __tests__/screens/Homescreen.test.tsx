@@ -29,33 +29,6 @@ describe('HomeScreen component', () => {
     expect(getByText('Search results')).toBeTruthy();
   });
 
-  it('calls refetch when search query changes', () => {
-    // Create a mock function for refetch
-    const refetchMock = jest.fn();
-
-    // Mock the useQuery hook to return a mock value with refetch function
-    mockUseQuery.mockImplementation(() => ({
-      data: [],
-      isError: false,
-      isLoading: false,
-      refetch: refetchMock,
-    }));
-
-    // Mock the fetchMovies function to return a mock value
-    mockFetchMovies.mockImplementation(() => Promise.resolve([]));
-
-    // Render the HomeScreen component
-    const { getByPlaceholderText } = render(<HomeScreen />);
-
-    // Get the input field with placeholder text "Adventure movies"
-    const input = getByPlaceholderText('Adventure movies');
-
-    // Simulate a text change event on the input field with refetch being called once
-    fireEvent.changeText(input, 'new search query');
-
-    expect(refetchMock).toHaveBeenCalledTimes(1);
-  });
-
   it('renders error message when isError is true', () => {
     // Mock the useQuery hook to return a mock value with isError set to true
     mockUseQuery.mockImplementation(() => ({

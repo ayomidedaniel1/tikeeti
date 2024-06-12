@@ -15,6 +15,10 @@ export default function TabLayout() {
         headerShown: false,
         tabBarStyle: {
           backgroundColor: Colors.tint,
+          height: 75,
+        },
+        tabBarLabelStyle: {
+          marginTop: 100,
         },
       }}>
       <Tabs.Screen
