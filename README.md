@@ -13,7 +13,7 @@ Unit tests written to show app functions as expected
 
 ### Empty home & Home screen with data
 
-<img src="assets/images/screenshots/empty_home.png" height="500em" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="assets/images/screenshots/homeresult.png" height="500em" alt='home' />
+<img src="assets/images/screenshots/empty_home.jpg" height="500em" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="assets/images/screenshots/homeresult.jpg" height="500em" alt='home' />
 
 ## Run locally
 
