@@ -17,9 +17,6 @@ export default function TabLayout() {
           backgroundColor: Colors.tint,
           height: 75,
         },
-        tabBarLabelStyle: {
-          marginTop: 100,
-        },
       }}>
       <Tabs.Screen
         name="index"
@@ -135,5 +132,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16,
     fontFamily: 'regular',
+    marginBottom: 10,
   },
 });
