@@ -2,7 +2,24 @@ import * as Location from 'expo-location';
 import { useState, useEffect } from 'react';
 import { Linking } from 'react-native';
 
-export const useLocation = () => {
+interface Address {
+  state: string;
+  country: string;
+}
+
+interface LocationObject {
+  coords: {
+    latitude: number;
+    longitude: number;
+  };
+}
+
+export const useLocation = (): {
+  location: LocationObject | false;
+  permissionDenied: boolean;
+  handleOpenSettings: () => void;
+  address: Address | null;
+} => {
   const [location, setLocation] = useState<Location.LocationObject | false>(false);
   const [permissionDenied, setPermissionDenied] = useState(false);
   const [address, setAddress] = useState<{ state: string; country: string; } | null>(null);

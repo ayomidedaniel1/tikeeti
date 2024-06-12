@@ -1,8 +1,12 @@
 # Tikeeti
 
-Mobile app built with React Native expo and uses Redux Toolkit for state management.
+Mobile app built with React Native expo and uses react query for state management.
+A search result page displaying search results based on users input
+
+Unit tests written to show app functions as expected
 
 ## Screenshots
+<img src="assets/images/screenshots/splashscreen.png" height="500em" alt='splashscreen' />
 
 ### Splashscreen
 
