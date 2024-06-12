@@ -6,11 +6,10 @@ A search result page displaying search results based on users input
 Unit tests written to show app functions as expected
 
 ## Screenshots
-<img src="assets/images/screenshots/splashscreen.jpg" height="500em" alt='splashscreen' />
 
 ### Splashscreen
 
-<img src="assets/images/screenshots/loginn.png" height="500em" alt='login' />
+<img src="assets/images/screenshots/splashscreen.jpg" height="500em" alt='splashscreen' />
 
 ### Empty home & Home screen with data
 
